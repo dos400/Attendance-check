@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="uz.hamroev.attendancecheck.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addStudentFragment"
+            app:destination="@id/addStudentFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_checkFragment"
+            app:destination="@id/checkFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_calendarFragment"
+            app:destination="@id/calendarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentFragment"
+        android:name="uz.hamroev.attendancecheck.fragment.AddStudentFragment"
+        android:label="fragment_add_student"
+        tools:layout="@layout/fragment_add_student" />
+    <fragment
+        android:id="@+id/checkFragment"
+        android:name="uz.hamroev.attendancecheck.fragment.CheckFragment"
+        android:label="fragment_check"
+        tools:layout="@layout/fragment_check" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="uz.hamroev.attendancecheck.fragment.CalendarFragment"
+        android:label="fragment_calendar"
+        tools:layout="@layout/fragment_calendar" >
+        <action
+            android:id="@+id/action_calendarFragment_to_showStudentsFragment"
+            app:destination="@id/showStudentsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showStudentsFragment"
+        android:name="uz.hamroev.attendancecheck.fragment.ShowStudentsFragment"
+        android:label="fragment_show_students"
+        tools:layout="@layout/fragment_show_students" />
+</navigation>

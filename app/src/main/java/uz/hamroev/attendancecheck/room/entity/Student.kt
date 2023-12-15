@@ -3,30 +3,29 @@ package uz.hamroev.attendancecheck.room.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-// Student.kt
-@Entity(tableName = "students")
-data class Student(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val name: String,
-    val surname: String,
-    val group: String,
+@Entity(
+    tableName = "student"
 )
+class Student {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0L
 
-// Data.kt
-@Entity(tableName = "data")
-class Data(
-    @PrimaryKey(autoGenerate = true)
-    var id: Long,
-    val date: String, // You might want to use a proper Date type here
-)
+    var name: String = ""
+    var surname: String = ""
+    var group: String = ""
 
-// Check.kt
-@Entity(tableName = "checks")
-data class Check(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    val student_id: Long,
-    val date_id: Long,
-    val is_have: Int,
-)
+
+
+    constructor()
+
+
+    constructor(name: String, surname: String, group: String) {
+        this.name = name
+        this.surname = surname
+        this.group = group
+    }
+
+
+
+
+}

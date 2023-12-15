@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.ivLogo.startAnimation(topAnimation)
 //        binding.appNameObject.startAnimation(bottomAnimation)
 
-        binding.tvAppName.setCharacterDeley(95)
+        binding.tvAppName.setCharacterDeley(55)
         binding.tvAppName.animateText("Attendance check")
     }
 

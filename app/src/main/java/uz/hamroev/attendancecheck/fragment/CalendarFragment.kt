@@ -9,18 +9,18 @@ import android.widget.DatePicker
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import uz.hamroev.attendancecheck.R
 import uz.hamroev.attendancecheck.adapter.DataAdapter
+import uz.hamroev.attendancecheck.cache.Cache
 import uz.hamroev.attendancecheck.databinding.FragmentCalendarBinding
-import uz.hamroev.attendancecheck.room.database.AppDatabase
-import uz.hamroev.attendancecheck.room.entity.Data
+import uz.hamroev.attendancecheck.room.AppDatabase
+import uz.hamroev.attendancecheck.room.entity.Date
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
 import java.util.Calendar
 
 class CalendarFragment : Fragment() {
+
 
     private lateinit var binding: FragmentCalendarBinding
     lateinit var dataAdapter: DataAdapter
@@ -30,9 +30,12 @@ class CalendarFragment : Fragment() {
     ): View {
         binding = FragmentCalendarBinding.inflate(layoutInflater)
 
+
+
+
         binding.menuButton.setOnClickListener {
-            //findNavController().popBackStack()
-            loadTimeData()
+            findNavController().popBackStack()
+            //loadTimeData()
         }
 
         loadTimeData()
@@ -49,16 +52,33 @@ class CalendarFragment : Fragment() {
     }
 
     private fun loadTimeData() {
-        GlobalScope.launch(Dispatchers.IO) {
-            val dataList = AppDatabase.GET.getAppDatabase().dataDao().getAllData().reversed()
 
-            dataAdapter = DataAdapter(requireContext(), dataList, object: DataAdapter.OnDataClickListener{
-                override fun onCLick(predlogEntity: Data, position: Int) {
+        val allDates = AppDatabase.GET.getAppDatabase().dateDao().getAllDates()
 
+        if (allDates.isEmpty()) {
+            MotionToast.createToast(
+                requireActivity(),
+                "Error",
+                "No Date yet!",
+                MotionToastStyle.ERROR,
+                MotionToast.GRAVITY_BOTTOM,
+                MotionToast.LONG_DURATION,
+                ResourcesCompat.getFont(requireContext(), www.sanju.motiontoast.R.font.helvetica_regular)
+            )
+        } else {
+            dataAdapter = DataAdapter(requireContext(), allDates.reversed(), object : DataAdapter.OnDataClickListener {
+                override fun onCLick(date: Date, position: Int) {
+                    Cache.date = date.date
+                    findNavController().navigate(R.id.showStudentsFragment)
                 }
+
             })
+
+
             binding.rvData.adapter = dataAdapter
         }
+
+
     }
 
 
@@ -74,9 +94,10 @@ class CalendarFragment : Fragment() {
                 // Handle the selected date
                 val selectedDate = "$dayOfMonth/${month + 1}/$year"
                 //selectedDateButton.text = selectedDate
-                GlobalScope.launch(Dispatchers.IO) {
-                    AppDatabase.GET.getAppDatabase().dataDao().insert(Data(System.currentTimeMillis(), selectedDate))
-                }
+
+                AppDatabase.GET.getAppDatabase().dateDao().insertDate(Date(selectedDate))
+
+                loadTimeData()
                 MotionToast.createToast(
                     requireActivity(),
                     "Success",

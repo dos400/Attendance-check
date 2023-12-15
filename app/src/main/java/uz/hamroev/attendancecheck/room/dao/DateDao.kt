@@ -5,29 +5,28 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import uz.hamroev.attendancecheck.room.entity.Student
+import uz.hamroev.attendancecheck.room.entity.Date
 
 @Dao
-interface StudentDao {
+interface DateDao {
 
-    //create user
     @Insert
-    fun insertUser(student: Student)
+    fun insertDate(date: Date)
 
     //read users
-    @Query("SELECT * FROM student")
-    fun getAllUsers(): List<Student>
+    @Query("SELECT * FROM date")
+    fun getAllDates(): List<Date>
 
     //update user
     @Update
-    fun updateUser(student: Student)
+    fun updateDate(date: Date)
 
     //delete user
     @Delete
-    fun deleteUser(student: Student)
+    fun deleteDate(date: Date)
 
     //deleteAll
-    @Query("DELETE FROM student")
+    @Query("DELETE FROM date")
     fun deleteAll()
 
 }

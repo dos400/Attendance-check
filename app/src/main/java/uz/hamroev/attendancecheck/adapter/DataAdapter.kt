@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.hamroev.attendancecheck.databinding.ItemDataBinding
-import uz.hamroev.attendancecheck.room.entity.Data
+import uz.hamroev.attendancecheck.room.entity.Date
 
 class DataAdapter(
     var context: Context,
-    var list: List<Data>,
+    var list: List<Date>,
     var onNavClickListener: DataAdapter.OnDataClickListener,
 ) : RecyclerView.Adapter<DataAdapter.VhPredlog>() {
 
@@ -18,11 +18,11 @@ class DataAdapter(
         RecyclerView.ViewHolder(itemDataBinding.root) {
 
 
-        fun onBind(data: Data, position: Int) {
-            itemDataBinding.tvData.text = data.date
+        fun onBind(date: Date, position: Int) {
+            itemDataBinding.tvData.text = date.date
 
             itemDataBinding.main.setOnClickListener {
-                onNavClickListener.onCLick(data, position)
+                onNavClickListener.onCLick(date, position)
             }
         }
     }
@@ -38,7 +38,7 @@ class DataAdapter(
     }
 
     interface OnDataClickListener {
-        fun onCLick(predlogEntity: Data, position: Int)
+        fun onCLick(date: Date, position: Int)
 
     }
 

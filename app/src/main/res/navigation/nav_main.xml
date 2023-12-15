@@ -24,7 +24,11 @@
         android:id="@+id/addStudentFragment"
         android:name="uz.hamroev.attendancecheck.fragment.AddStudentFragment"
         android:label="fragment_add_student"
-        tools:layout="@layout/fragment_add_student" />
+        tools:layout="@layout/fragment_add_student" >
+        <action
+            android:id="@+id/action_addStudentFragment_to_studentListFragment"
+            app:destination="@id/studentListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/checkFragment"
         android:name="uz.hamroev.attendancecheck.fragment.CheckFragment"
@@ -44,4 +48,14 @@
         android:name="uz.hamroev.attendancecheck.fragment.ShowStudentsFragment"
         android:label="fragment_show_students"
         tools:layout="@layout/fragment_show_students" />
+    <fragment
+        android:id="@+id/studentListFragment"
+        android:name="uz.hamroev.attendancecheck.fragment.StudentListFragment"
+        android:label="fragment_student_list"
+        tools:layout="@layout/fragment_student_list" />
+    <fragment
+        android:id="@+id/showCheckedStudentsFragment"
+        android:name="uz.hamroev.attendancecheck.fragment.ShowCheckedStudentsFragment"
+        android:label="fragment_show_checked_students"
+        tools:layout="@layout/fragment_show_checked_students" />
 </navigation>

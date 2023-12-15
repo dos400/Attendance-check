@@ -55,6 +55,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.4.1")
     // To use Kotlin annotation processing tool (kapt)
     kapt("androidx.room:room-compiler:2.4.1")
+    annotationProcessor("androidx.room:room-compiler:2.4.1")
 
 
     //nav graph
@@ -72,6 +73,7 @@ dependencies {
     // kotlin coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
+
 
     //animation toast
     implementation("com.github.Spikeysanju:MotionToast:1.4")

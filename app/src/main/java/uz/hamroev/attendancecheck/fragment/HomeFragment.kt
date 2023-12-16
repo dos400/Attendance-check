@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.hamroev.attendancecheck.R
 import uz.hamroev.attendancecheck.databinding.FragmentHomeBinding
+import uz.hamroev.attendancecheck.room.AppDatabase
 
 class HomeFragment : Fragment() {
 
@@ -33,12 +34,20 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.checkFragment)
         }
 
+
+
         binding.menuCalendar.setOnClickListener {
             findNavController().navigate(R.id.calendarFragment)
         }
 
 
+        
+        val allUsers = AppDatabase.GET.getAppDatabase().studentDao().getAllUsers()
 
+        val total = allUsers.size
+
+        binding.includeCourse.totalTv.text = total.toString()
+        binding.includeCourse2.totalTv.text = total.toString()
 
 
 

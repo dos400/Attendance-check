@@ -25,10 +25,14 @@ class ShowStudentsFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.tvDate.text = Cache.date
 
         val allChecksByDate = AppDatabase.GET.getAppDatabase().checkDao().getAllChecksByDate(Cache.date!!)
-        val showCheckAdapter = ShowCheckedAdapter(allChecksByDate)
-        binding.rvCheck.adapter = showCheckAdapter
+        if (allChecksByDate.isNotEmpty()) {
+            val showCheckAdapter = ShowCheckedAdapter(allChecksByDate)
+            binding.rvCheck.adapter = showCheckAdapter
+        }
+
 
 
 

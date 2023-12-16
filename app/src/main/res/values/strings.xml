@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Attendance check</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">Save</string>
     <string name="all_course">All course</string>
